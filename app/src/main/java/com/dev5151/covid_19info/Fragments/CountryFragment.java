@@ -1,10 +1,14 @@
 package com.dev5151.covid_19info.Fragments;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +36,10 @@ public class CountryFragment extends Fragment {
 
     private RecyclerView recyclerView;
     Retrofit retrofit;
-    List<Country>list;
+    List<Country> list;
+    androidx.appcompat.widget.SearchView searchView;
+    SearchManager searchManager;
+    CountryAdapter countryAdapter;
 
     @Nullable
     @Override
@@ -40,12 +47,32 @@ public class CountryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_country, container, false);
         initView(view);
         fetchCountries();
+
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setIconifiedByDefault(false);
+
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                countryAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         return view;
     }
 
     private void initView(View view) {
         recyclerView = view.findViewById(R.id.recyclerView);
-        list=new ArrayList<>();
+        list = new ArrayList<>();
+        searchView = view.findViewById(R.id.search_view);
+        searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
     }
 
     private void fetchCountries() {
@@ -65,14 +92,15 @@ public class CountryFragment extends Fragment {
                 if (!response.isSuccessful()) {
                     Toast.makeText(getActivity(), "Code: " + response.code(), Toast.LENGTH_LONG).show();
                     Log.e("Retrofit", "Code: " + response.code());
-                }else{
-                    List<Country>countries=response.body();
-                    for(Country country:countries){
+                } else {
+                    List<Country> countries = response.body();
+                    for (Country country : countries) {
                         list.add(country);
                     }
-                    CountryAdapter countryAdapter=new CountryAdapter(list,getActivity());
+                    countryAdapter = new CountryAdapter(list, getActivity());
                     recyclerView.setAdapter(countryAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    countryAdapter.notifyDataSetChanged();
                 }
             }
 

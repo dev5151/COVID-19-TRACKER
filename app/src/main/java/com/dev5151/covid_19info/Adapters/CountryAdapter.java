@@ -1,4 +1,4 @@
-package com.dev5151.covid_19info.Adapters;
+    package com.dev5151.covid_19info.Adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,11 +25,13 @@ import com.bumptech.glide.request.target.Target;
 import com.dev5151.covid_19info.Models.Country;
 import com.dev5151.covid_19info.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> implements Filterable {
 
     private List<Country> countryList;
+    private List<Country> countryListFull;
     private Context context;
 
 
@@ -36,6 +40,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
     public CountryAdapter(List<Country> countryList, Context context) {
         this.countryList = countryList;
         this.context = context;
+        countryListFull = new ArrayList<>(countryList);
     }
 
     @NonNull
@@ -70,6 +75,40 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
     public int getItemCount() {
         return countryList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return countryFilter;
+    }
+
+    private Filter countryFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Country> filterList = new ArrayList<>();
+            if (charSequence == null || charSequence.length() == 0) {
+                filterList.addAll(countryListFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for (Country country : countryListFull) {
+                    if (country.getCountry().toLowerCase().contains(filterPattern)) {
+                        filterList.add(country);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filterList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            countryList.clear();
+            countryList.addAll((List)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class CountryViewHolder extends RecyclerView.ViewHolder {
 
