@@ -44,5 +44,7 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation 'com.google.android.gms:play-services-base:17.2.1'
     implementation 'com.airbnb.android:lottie:3.4.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 
 }

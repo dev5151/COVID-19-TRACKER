@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class BottomSheetCountryData extends BottomSheetDialogFragment {
     Retrofit retrofit;
     String country;
     ProgressBar progressBar;
+    LinearLayout linearLayout;
 
 
     public BottomSheetCountryData(String country) {
@@ -69,6 +71,7 @@ public class BottomSheetCountryData extends BottomSheetDialogFragment {
         todayDeaths = view.findViewById(R.id.today_deaths);
         recovered = view.findViewById(R.id.recovered);
         progressBar = view.findViewById(R.id.progressBar);
+        linearLayout=view.findViewById(R.id.linearLayout);
     }
 
     private void fetchData(String country) {
@@ -102,6 +105,8 @@ public class BottomSheetCountryData extends BottomSheetDialogFragment {
                         return;
                     }
                     Glide.with(mActivity).load(newCountry.getCountryFlag().getFlag()).into(flag);
+                    linearLayout.setVisibility(View.VISIBLE);
+
                 }
             }
 
