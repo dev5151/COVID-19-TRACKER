@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121517">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view_home"
+                android:layout_width="269dp"
+                android:layout_height="228dp"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                app:lottie_loop="true"
+                app:lottie_fileName="stay_home_anim.json" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view_wash"
+                android:layout_width="269dp"
+                android:layout_height="228dp"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                app:lottie_loop="true"
+                app:lottie_fileName="hand_sanitizer_anim.json" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view_mask"
+                android:layout_width="269dp"
+                android:layout_height="228dp"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                app:lottie_loop="true"
+                app:lottie_fileName="wear_mask_anim.json" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

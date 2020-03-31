@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <item
+        android:id="@+id/nav_data"
+        android:title="DATA" />
+    <item
+        android:id="@+id/nav_country"
+        android:title="COUNTRIES" />
+    <item
+        android:id="@+id/nav_map_view"
+        android:title="WORLD MAP" />
+    <item
+        android:id="@+id/nav_measures"
+        android:title="MEASURES" />
+
+
+</menu>
