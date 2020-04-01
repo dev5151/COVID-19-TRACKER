@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.transition.Fade;
@@ -19,6 +20,7 @@ import com.dev5151.covid_19info.Fragments.MapsFragment;
 import com.dev5151.covid_19info.Fragments.MeasuresFragment;
 import com.dev5151.covid_19info.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     FrameLayout frame;
     Toolbar toolbar;
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentTransition(new DataFragment());
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
     }
 
@@ -77,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_map_view:
                 fragmentTransition(new MapsFragment());
                 drawerLayout.closeDrawers();
-
                 break;
         }
         return true;

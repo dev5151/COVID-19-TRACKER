@@ -19,6 +19,8 @@ import com.dev5151.covid_19info.Interfaces.CovidApi;
 import com.dev5151.covid_19info.Models.Country;
 import com.dev5151.covid_19info.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,6 +36,7 @@ public class BottomSheetCountryData extends BottomSheetDialogFragment {
     String country;
     ProgressBar progressBar;
     LinearLayout linearLayout;
+    FirebaseAnalytics firebaseAnalytics;
 
 
     public BottomSheetCountryData(String country) {
@@ -72,6 +75,7 @@ public class BottomSheetCountryData extends BottomSheetDialogFragment {
         recovered = view.findViewById(R.id.recovered);
         progressBar = view.findViewById(R.id.progressBar);
         linearLayout=view.findViewById(R.id.linearLayout);
+        firebaseAnalytics=FirebaseAnalytics.getInstance(getActivity());
     }
 
     private void fetchData(String country) {

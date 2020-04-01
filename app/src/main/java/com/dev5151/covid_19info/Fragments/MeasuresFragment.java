@@ -10,9 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.dev5151.covid_19info.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 public class MeasuresFragment extends Fragment {
 
     LottieAnimationView animationViewHome, animationViewWash, animationViewMask;
+    FirebaseAnalytics firebaseAnalytics;
 
     @Nullable
     @Override
@@ -31,6 +34,7 @@ public class MeasuresFragment extends Fragment {
         animationViewHome = view.findViewById(R.id.animation_view_home);
         animationViewWash = view.findViewById(R.id.animation_view_wash);
         animationViewMask = view.findViewById(R.id.animation_view_mask);
+        firebaseAnalytics=FirebaseAnalytics.getInstance(getActivity());
     }
 
 }

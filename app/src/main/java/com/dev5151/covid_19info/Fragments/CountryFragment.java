@@ -22,6 +22,7 @@ import com.dev5151.covid_19info.Interfaces.CovidApi;
 import com.dev5151.covid_19info.Models.Country;
 import com.dev5151.covid_19info.Models.Data;
 import com.dev5151.covid_19info.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,8 @@ public class CountryFragment extends Fragment {
     androidx.appcompat.widget.SearchView searchView;
     SearchManager searchManager;
     CountryAdapter countryAdapter;
+    private FirebaseAnalytics firebaseAnalytics;
+
 
     @Nullable
     @Override
@@ -47,7 +50,6 @@ public class CountryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_country, container, false);
         initView(view);
         fetchCountries();
-
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setIconifiedByDefault(false);
@@ -73,6 +75,8 @@ public class CountryFragment extends Fragment {
         list = new ArrayList<>();
         searchView = view.findViewById(R.id.search_view);
         searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
+
     }
 
     private void fetchCountries() {

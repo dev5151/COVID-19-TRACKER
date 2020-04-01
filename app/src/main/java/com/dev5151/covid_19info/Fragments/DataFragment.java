@@ -20,6 +20,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class DataFragment extends Fragment {
     private TextView cases, deaths, recovered, active;
     PieChart pieChart;
     int[] colorArray;
+    FirebaseAnalytics firebaseAnalytics;
 
     @Nullable
     @Override
@@ -51,6 +53,7 @@ public class DataFragment extends Fragment {
         recovered = view.findViewById(R.id.recovered);
         active = view.findViewById(R.id.active);
         pieChart = view.findViewById(R.id.pieChart);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
 
         colorArray = new int[]{getResources().getColor(R.color.purple), Color.RED, Color.GREEN, getResources().getColor(R.color.lightBlue)};
 
