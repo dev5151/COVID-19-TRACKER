@@ -61,7 +61,7 @@ public class DataFragment extends Fragment {
 
     private void fetchData() {
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://corona.lmao.ninja/")
+                .baseUrl("https://corona.lmao.ninja/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

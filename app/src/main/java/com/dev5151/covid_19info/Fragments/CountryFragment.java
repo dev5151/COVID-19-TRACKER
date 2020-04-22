@@ -82,7 +82,7 @@ public class CountryFragment extends Fragment {
     private void fetchCountries() {
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://corona.lmao.ninja/")
+                .baseUrl("https://corona.lmao.ninja/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

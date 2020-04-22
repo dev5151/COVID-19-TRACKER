@@ -80,7 +80,7 @@ public class BottomSheetCountryData extends BottomSheetDialogFragment {
 
     private void fetchData(String country) {
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://corona.lmao.ninja/")
+                .baseUrl("https://corona.lmao.ninja/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

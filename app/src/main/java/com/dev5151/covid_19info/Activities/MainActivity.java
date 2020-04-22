@@ -19,6 +19,7 @@ import com.dev5151.covid_19info.Fragments.DataFragment;
 import com.dev5151.covid_19info.Fragments.MapsFragment;
 import com.dev5151.covid_19info.Fragments.MeasuresFragment;
 import com.dev5151.covid_19info.R;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -94,5 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.frame, fragment)
                 .commit();
     }
+
+
+
 
 }
